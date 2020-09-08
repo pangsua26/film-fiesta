@@ -23,10 +23,10 @@ function Detail(props) {
   return (
       <Container fluid>
         <Row>
-          <Col size="md-18">
+          <Col size="md-12">
             <Jumbotron>
               <h1>
-                {movie.title} by {movie.director}
+                {movie.title}
               </h1>
             </Jumbotron>
           </Col>
