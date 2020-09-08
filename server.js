@@ -12,21 +12,35 @@ app.use(express.json());
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
 }
-// Add routes, both API and view
-app.use(routes);
+
 
 // Connect to the Mongo DB
-mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/reactreadinglist",
-{
-  useUnifiedTopology: true,
+
+const uri = "mongodb+srv://pangsua26:Password@cluster0.nn8c3.mongodb.net/filmfiestaDB?retryWrites=true&w=majority";
+mongoose.connect(uri, {
   useNewUrlParser: true,
-  useCreateIndex: true,
-  useFindAndModify: false
-}
-);
-mongoose.connection.on("error", err => {
-  throw "failed connect to MongoDB";
-});
+  useUnifiedTopology: true
+})
+.then(() => {
+  console.log('MongoDB Connected…')
+})
+.catch(err => console.log(err))
+
+// mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/reactreadinglist")
+// mongoose.connect("mongodb+srv://pangsua26:Password1234!@cluster0.nn8c3.mongodb.net/filmfiestaDB?retryWrites=true&w=majority",
+// {
+//   useUnifiedTopology: true,
+//   useNewUrlParser: true,
+//   useCreateIndex: true,
+//   useFindAndModify: false
+// }
+// );
+// mongoose.connection.on("error", err => {
+//   throw "failed connect to MongoDB";
+// });
+
+// Add routes, both API and view
+app.use(routes);
 
 // Start the API server
 app.listen(PORT, function() {
