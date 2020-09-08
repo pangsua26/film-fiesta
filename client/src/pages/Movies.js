@@ -67,11 +67,11 @@ function Movies() {
                 name="title"
                 placeholder="Title (required)"
               />
-              <Input
+              {/* <Input
                 onChange={handleInputChange}
                 name="director"
                 placeholder="Director (optional)"
-              />
+              /> */}
               <TextArea
                 onChange={handleInputChange}
                 name="synopsis"
@@ -95,7 +95,7 @@ function Movies() {
                   <ListItem key={movie._id}>
                     <Link to={"/movie/" + movie._id}>
                       <strong>
-                        {movie.title} by {movie.director}
+                        {movie.title}
                       </strong>
                     </Link>
                     <DeleteBtn onClick={() => deleteMovie(movie._id)} />
