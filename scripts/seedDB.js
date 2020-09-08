@@ -3,10 +3,20 @@ const db = require("../models");
 
 // This file empties the Movies collection and inserts the movies below
 
-mongoose.connect(
-  process.env.MONGODB_URI ||
-  "mongodb://localhost/reactreadinglist"
-);
+// mongoose.connect(
+//   process.env.MONGODB_URI ||
+//   "mongodb://localhost/reactreadinglist"
+// );
+
+const uri = "mongodb+srv://pangsua26:Password@cluster0.nn8c3.mongodb.net/filmfiestaDB?retryWrites=true&w=majority";
+mongoose.connect(uri, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+})
+.then(() => {
+  console.log('MongoDB Connected…')
+})
+.catch(err => console.log(err))
 
 const movieSeed = [
   {
