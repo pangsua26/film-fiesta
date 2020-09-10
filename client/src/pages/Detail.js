@@ -39,7 +39,7 @@ function Detail(props) {
                 {props.Year}
               </p>
             </article>
-            <img src={props.image} height="200" width="400" alt={movie.id}/> 
+            <img src={props.image} height="100" width="100" alt={movie.id}/> 
           </Col>
         </Row>
   
