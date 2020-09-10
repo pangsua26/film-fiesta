@@ -41,9 +41,13 @@ function Movies() {
   function handleFormSubmit(event) {
     event.preventDefault();
     console.log(movies,formObject.title,formObject);
-  
-    const MOVIE_API_URL = `https://www.omdbapi.com/?s=${formObject.title}&key=0562f14bedmshc9dfe180b634C2ep1e3e26jsndc541bcbe2ba`;
+    // http://www.omdbapi.com/?i=tt3896198&apikey=d231bf0d
+    const MOVIE_API_URL = `https://www.omdbapi.com/?s=${formObject.title}&apikey=d231bf0d`;
+    axios.get(MOVIE_API_URL).then((response) => {
+      console.log("Moview",response)
+    })
       };
+
 
     return (
       <Container fluid>
