@@ -45,6 +45,19 @@ function Movies() {
     const MOVIE_API_URL = `https://www.omdbapi.com/?s=${formObject.title}&apikey=d231bf0d`;
     axios.get(MOVIE_API_URL).then((response) => {
       console.log("Moview",response)
+      var movieslist = response.data.Search
+      var apilist = []
+      for(let i=0;i<movieslist.length;i++){
+        let movie = {
+          Title : movieslist[i].Title,
+          Year : movieslist[i].Year,
+id:movieslist[i].imdbID,
+image:movieslist[i].Poster
+        }
+        apilist.push(movie);
+      }
+      setMovies(apilist);
+    
     })
       };
 
@@ -90,7 +103,7 @@ function Movies() {
                   <ListItem key={movie._id}>
                     <Link to={"/movie/" + movie._id}>
                       <strong>
-                        {movie.title}
+                        {movie.Title}
                       </strong>
                     </Link>
                     <DeleteBtn onClick={() => deleteMovie(movie._id)} />
