@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import { Col, Row, Container } from "../components/Grid";
 import { List, ListItem } from "../components/List";
 import { Input, TextArea, FormBtn } from "../components/Form";
+import axios from "axios";
 
 function Movies() {
   // Setting our component's initial state
@@ -19,11 +20,7 @@ function Movies() {
 
   // Loads all movies and sets them to movies
   function loadMovies() {
-    API.getMovies()
-      .then(res => 
-        setMovies(res.data)
-      )
-      .catch(err => console.log(err));
+ 
   };
 
   // Deletes a movie from the database with a given id, then reloads movies from the db
@@ -39,20 +36,14 @@ function Movies() {
     setFormObject({...formObject, [name]: value})
   };
 
-  // When the form is submitted, use the API.saveMovie method to save the movie data
-  // Then reload movies from the database
+  // When the form is submitted, use the API.saveMovie method to save the movie data;
+  // Then reload movies from the database;
   function handleFormSubmit(event) {
     event.preventDefault();
-    if (formObject.title) {
-      API.saveMovie({
-        title: formObject.title,
-        director: formObject.director,
-        synopsis: formObject.synopsis
-      })
-        .then(res => loadMovies())
-        .catch(err => console.log(err));
-    }
-  };
+    console.log(movies,formObject.title,formObject);
+  
+    const MOVIE_API_URL = `https://www.omdbapi.com/?s=${formObject.title}&key=0562f14bedmshc9dfe180b634C2ep1e3e26jsndc541bcbe2ba`;
+      };
 
     return (
       <Container fluid>

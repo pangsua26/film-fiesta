@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useReducer, useEffect } from "react";
 import Movies from "./pages/Movies";
 import Detail from "./pages/Detail";
 import NoMatch from "./pages/NoMatch";
@@ -27,5 +27,4 @@ function App() {
   </Router>
   );
 }
-
 export default App;
