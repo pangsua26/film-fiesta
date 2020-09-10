@@ -26,7 +26,7 @@ function Detail(props) {
           <Col size="md-12">
             <Jumbotron>
               <h1>
-                {movie.title}
+                {props.Title}
               </h1>
             </Jumbotron>
           </Col>
@@ -34,13 +34,15 @@ function Detail(props) {
         <Row>
           <Col size="md-10 md-offset-1">
             <article>
-              <h1>Synopsis</h1>
+              <h1>Year</h1>
               <p>
-                {movie.synopsis}
+                {props.Year}
               </p>
             </article>
+            <img src={props.image} height="200" width="400" alt={movie.id}/> 
           </Col>
         </Row>
+  
         <Row>
           <Col size="md-2">
             <Link to="/">← Back to Home</Link>
