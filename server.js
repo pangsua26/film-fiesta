@@ -46,8 +46,6 @@ mongoose.connect(uri, {
 // Add routes, both API and view
 app.use(routes);
 
-app.use("/users", require("./routes/userRouter"));
-
 // Start the API server
 app.listen(PORT, function() {
   console.log(`🌎  ==> API Server now listening on PORT ${PORT}!`);
