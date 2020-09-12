@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import { useHistory } from "react-router-dom";
 import UserContext from "../../context/UserContext";
 
-function Nav() {
+export default function AuthOptions() {
 const {userData, setUserData} = useContext(UserContext); // get user data and set user data for me in separate variables
 
     const history = useHistory();
@@ -17,12 +17,11 @@ const {userData, setUserData} = useContext(UserContext); // get user data and se
         localStorage.setItem("auth-token", "");
     };
     console.log(userData);
-   
+    console.log("testing");
 
-
-  return (
-    <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
-     {userData.user ? (
+    return (
+        <nav className="auth-options">
+            {userData.user ? (
                 <button onClick={logout}>Log Out</button>
             ) : (
                 <>
@@ -30,8 +29,7 @@ const {userData, setUserData} = useContext(UserContext); // get user data and se
                 <button onClick={login}>Log in</button>
                 </>
         )}
-    </nav>
-  );
-}
+        </nav>
+    );
 
-export default Nav;
+}
