@@ -1,8 +1,12 @@
 const express = require("express");
 
 const mongoose = require("mongoose");
+const cors= require("cors");
 const routes = require("./routes");
 const app = express();
+require("dotenv").config();
+
+app.use(cors());
 const PORT = process.env.PORT || 3001;
 
 // Define middleware here
@@ -41,6 +45,8 @@ mongoose.connect(uri, {
 
 // Add routes, both API and view
 app.use(routes);
+
+app.use("/users", require("./routes/userRouter"));
 
 // Start the API server
 app.listen(PORT, function() {
