@@ -21,8 +21,6 @@ function Home () {
 
     return <div className="page">
         <header id="header">
-            <Link  to="/">
-                <h1 className="title">MERN auth </h1>
                 <Router>
       
     <div>
@@ -40,7 +38,7 @@ function Home () {
     </div>
    
   </Router>
-            </Link>
+          
             <AuthOptions />
 
         </header>
