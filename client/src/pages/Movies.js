@@ -45,8 +45,9 @@ function Movies() {
     const MOVIE_API_URL = `https://www.omdbapi.com/?t=${formObject.title}&apikey=d231bf0d`;
     axios.get(MOVIE_API_URL).then((response) => {
       //console.log(response)
-      var movieslist = response.data
-      var apilist = [movieslist]
+      var movieslist = response.data;
+      var apilist = movieslist.plot;
+      console.log(movieslist);
     // for(let i=0;i<response.length;i++){;
 
         //let movie = {;
@@ -101,24 +102,25 @@ function Movies() {
               <h1>My Fiesta Movie List</h1>
             </Jumbotron>
            
-            {movies.length ? (
-              <List>
-                {movies.map(movie => (
-                  <ListItem key={movie.id}>
-                    <Link to={"/movie/" + movie.id}>
-                      <strong>
-                        {movie.Title}
-                      </strong>
-                      <p>{movie.Year}</p>
-                      <img src={movie.image} height="200" width="400" alt={movie.id}/>
-                    </Link>
-                    <DeleteBtn onClick={() => deleteMovie(movie._id)} />
+            {movieslist.length >= 1 ? (
+              <List>;
+                {movieslist.map(movie => (
+                  <ListItem key={movieslist.id}>;
+                    <Link to={"/movie/" + movieslist.id}>;
+                      <strong>;
+                        {movieslist.Title};
+                      </strong>;
+                      <p>{movieslist.Year}</p>;
+                      <img src={movieslist.image} height="200" width="400" alt={movie.id}/>;
+                    </Link>;
+                    <DeleteBtn onClick={() => deleteMovie(movie._id)} />;
                   </ListItem>
-                ))}
+                ))};
               </List>
             ) : (
               <h3>No Results to Display</h3>
-            )}
+            )};
+            
           </Col>
         </Row>
       </Container>
