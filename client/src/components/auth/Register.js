@@ -48,8 +48,8 @@ function Register() {
     };
 
     return (
-        <div className="page">
-            <h2>Register</h2>
+        <div className="page container">
+            <h2>Register for Film Fiesta!</h2>
             {error && (
             <ErrorNotice message={error} clearError={
                 () => setError(undefined)}
