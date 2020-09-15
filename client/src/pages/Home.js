@@ -1,26 +1,151 @@
-import React, { useEffect, useContext } from 'react';
-import {useHistory, Link} from "react-router-dom";
+// import React, { useEffect, useContext } from 'react';
+// import {useHistory, Link} from "react-router-dom";
+// import UserContext from "../context/UserContext";
+// import AuthOptions from "../components/auth/AuthOptions";
+
+
+// function Home () {
+//     const {userData} = useContext(UserContext);
+//     const history = useHistory();
+
+//     useEffect(() => {
+//         if (!userData.user) history.push("/login")
+    
+//     })
+
+//     return <div className="page">
+//         <header id="header">
+//             <Link  to="/">
+//                 <h1 className="title">Film Fiesta</h1>
+//             </Link>
+//             <AuthOptions />
+
+//         </header>
+//     </div>
+// }
+
+// export default Home
+
+import React, { useState, useEffect, useContext } from "react";
+import DeleteBtn from "../components/DeleteBtn";
+import Jumbotron from "../components/Jumbotron";
+import API from "../utils/API";
+import {useHistory, Link } from "react-router-dom";
+import { Col, Row, Container } from "../components/Grid";
+import { List, ListItem } from "../components/List";
+import { Input, TextArea, FormBtn } from "../components/Form";
 import UserContext from "../context/UserContext";
 import AuthOptions from "../components/auth/AuthOptions";
 
-function Home () {
-    const {userData} = useContext(UserContext);
+function Movies() {
+  // Setting our component's initial state
+  const [movies, setMovies] = useState([])
+  const [formObject, setFormObject] = useState({})
+  const {userData} = useContext(UserContext);
     const history = useHistory();
 
     useEffect(() => {
         if (!userData.user) history.push("/login")
-    
+
     })
+  // Load all movies and store them with setMovies
+  useEffect(() => {
+    loadMovies()
+  }, [])
 
-    return <div className="page">
-        <header id="header">
-            <Link  to="/">
-                <h1 className="title">MERN auth </h1>
-            </Link>
-            <AuthOptions />
+  // Loads all movies and sets them to movies
+  function loadMovies() {
+    API.getMovies()
+      .then(res => 
+        setMovies(res.data)
+      )
+      .catch(err => console.log(err));
+  };
 
-        </header>
-    </div>
-}
+  // Deletes a movie from the database with a given id, then reloads movies from the db
+  function deleteMovie(id) {
+    API.deleteMovie(id)
+      .then(res => loadMovies())
+      .catch(err => console.log(err));
+  }
 
-export default Home
+  // Handles updateing component state when the user types into the input field
+  function handleInputChange(event) {
+    const { name, value } = event.target;
+    setFormObject({...formObject, [name]: value})
+  };
+
+  // When the form is submitted, use the API.saveMovie method to save the movie data
+  // Then reload movies from the database
+  function handleFormSubmit(event) {
+    event.preventDefault();
+    if (formObject.title) {
+      API.saveMovie({
+        title: formObject.title,
+        director: formObject.director,
+        synopsis: formObject.synopsis
+      })
+        .then(res => loadMovies())
+        .catch(err => console.log(err));
+    }
+  };
+
+    return (
+      <Container fluid>
+        <Row>
+          <Col size="md-6">
+            <Jumbotron>
+              <h1>Movies I Need To Watch!</h1>
+            </Jumbotron>
+            <form>
+              <Input
+                onChange={handleInputChange}
+                name="title"
+                placeholder="Title (required)"
+              />
+              {/* <Input
+                onChange={handleInputChange}
+                name="director"
+                placeholder="Director (optional)"
+              /> */}
+              <TextArea
+                onChange={handleInputChange}
+                name="synopsis"
+                placeholder="Synopsis (optional)"
+              />
+              <FormBtn
+                disabled={!(formObject.title)}
+                onClick={handleFormSubmit}
+              >
+                Add to List
+              </FormBtn>
+            </form>
+          </Col>
+          <Col size="md-6 sm-12">
+            <Jumbotron>
+              <h1>My Fiesta Movie List</h1>
+            </Jumbotron>
+            {movies.length ? (
+              <List>
+                {movies.map(movie => (
+                  <ListItem key={movie._id}>
+                    <Link to={"/movie/" + movie._id}>
+                      <strong>
+                        {movie.title}
+                      </strong>
+                    </Link>
+                    <DeleteBtn onClick={() => deleteMovie(movie._id)} />
+                  </ListItem>
+                ))}
+              </List>
+            ) : (
+              <h3>No Results to Display</h3>
+            )}
+          </Col>
+        </Row>
+      </Container>
+    );
+  }
+
+
+export default Movies;

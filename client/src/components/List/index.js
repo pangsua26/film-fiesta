@@ -12,5 +12,6 @@ export function List({ children }) {
 }
 
 export function ListItem({ children }) {
+  console.log("this is a test")
   return <li className="list-group-item">{children}</li>;
 }
