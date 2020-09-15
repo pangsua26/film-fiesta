@@ -31,7 +31,7 @@ mongoose.connect(uri, {
 .catch(err => console.log(err))
 
 // mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/reactreadinglist")
-// mongoose.connect("mongodb+srv://pangsua26:Password1234!@cluster0.nn8c3.mongodb.net/filmfiestaDB?retryWrites=true&w=majority",
+
 // {
 //   useUnifiedTopology: true,
 //   useNewUrlParser: true,

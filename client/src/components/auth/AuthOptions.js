@@ -25,7 +25,7 @@ const {userData, setUserData} = useContext(UserContext); // get user data and se
                 <button onClick={logout}>Log Out</button>
             ) : (
                 <>
-                <button onClick= {register}>Register</button>
+                <button className="mr-2" onClick= {register}>Register</button>
                 <button onClick={login}>Log in</button>
                 </>
         )}
