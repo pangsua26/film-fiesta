@@ -21,7 +21,7 @@ if (process.env.NODE_ENV === "production") {
 // Connect to the Mongo DB
 
 const uri = "mongodb+srv://pangsua26:Password@cluster0.nn8c3.mongodb.net/filmfiestaDB?retryWrites=true&w=majority";
-mongoose.connect(process.env.uri || uri, {
+mongoose.connect(process.env.MONGO_URI || uri, {
   useNewUrlParser: true,
   useUnifiedTopology: true
 })
