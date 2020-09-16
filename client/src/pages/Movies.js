@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import DeleteBtn from "../components/DeleteBtn";
 import Jumbotron from "../components/Jumbotron";
 import API from "../utils/API";
@@ -8,11 +8,13 @@ import { List, ListItem } from "../components/List";
 import { Input, TextArea, FormBtn } from "../components/Form";
 import axios from "axios";
 
+
 function Movies() {
   // Setting our component's initial state
-  const [movies, setMovies] = useState([])
-  const [formObject, setFormObject] = useState({})
-
+  const [movies, setMovies] = useState()
+  const [formObject, setFormObject] = useState()
+  const [movieslist, setMoviesList] = useState({})
+  
   // Load all movies and store them with setMovies
   useEffect(() => {
     loadMovies()
@@ -45,29 +47,19 @@ function Movies() {
     const MOVIE_API_URL = `https://www.omdbapi.com/?t=${formObject.title}&apikey=d231bf0d`;
     axios.get(MOVIE_API_URL).then((response) => {
       //console.log(response)
-      var movieslist = response.data;
-      var apilist = movieslist.plot;
-      console.log(movieslist);
-    // for(let i=0;i<response.length;i++){;
-
-        //let movie = {;
-        //  Title : movieslist[i].Title,;
-          //Year : movieslist[i].Year,;
-//id:movieslist[i].imdbID,;
-//image:movieslist[i].Poster;
-
-        //};
-        //console.log(movie);
-       // apilist.push(movie);
-      //};
-      setMovies(apilist);
+     // this.setState({movieslist: response.data});
+      setMoviesList(response.data);
+      
+      
     
     })
-      };
+  };
+      
 
 
     return (
       <Container fluid>
+        
         <Row>
           <Col size="md-6">
             <Jumbotron>
@@ -90,7 +82,7 @@ function Movies() {
                 placeholder="Synopsis (optional)"
               />
               <FormBtn
-                disabled={!(formObject.title)}
+               
                 onClick={handleFormSubmit}
               >
                 Add to List
@@ -101,31 +93,35 @@ function Movies() {
             <Jumbotron>
               <h1>My Fiesta Movie List</h1>
             </Jumbotron>
-           
-            {movieslist.length >= 1 ? (
-              <List>;
-                {movieslist.map(movie => (
-                  <ListItem key={movieslist.id}>;
-                    <Link to={"/movie/" + movieslist.id}>;
-                      <strong>;
-                        {movieslist.Title};
-                      </strong>;
-                      <p>{movieslist.Year}</p>;
-                      <img src={movieslist.image} height="200" width="400" alt={movie.id}/>;
-                    </Link>;
-                    <DeleteBtn onClick={() => deleteMovie(movie._id)} />;
+            {console.log(movieslist.Plot)}
+         {movieslist ? (
+              <List>
+                
+                  <ListItem key={movieslist.Title}>
+                    <Link to={"/movie/" + movieslist.Actors}>
+                      <strong>
+                        {movieslist.Title}
+                      </strong>
+                      <p>{movieslist.Year}</p>
+                      <p>{movieslist.Plot}</p>
+                      <p>{movieslist.Actors}</p>
+                      
+                    </Link>
+                    <DeleteBtn onClick={() => deleteMovie(movies._id)} />
                   </ListItem>
-                ))};
+        
               </List>
-            ) : (
+            
+           ) : (
               <h3>No Results to Display</h3>
-            )};
+           )}; 
             
           </Col>
         </Row>
       </Container>
     );
+        
   }
 
-
+ 
 export default Movies;
