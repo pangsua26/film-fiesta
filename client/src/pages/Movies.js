@@ -94,7 +94,7 @@ function Movies() {
               <h1>My Fiesta Movie List</h1>
             </Jumbotron>
             {console.log(movieslist.Plot)}
-         {movieslist ? (
+         {movieslist ?  (
               <List>
                 
                   <ListItem key={movieslist.Title}>
@@ -102,9 +102,12 @@ function Movies() {
                       <strong>
                         {movieslist.Title}
                       </strong>
-                      <p>{movieslist.Year}</p>
-                      <p>{movieslist.Plot}</p>
-                      <p>{movieslist.Actors}</p>
+                      <p>   
+                        {movieslist.Year}</p>
+                      <p> 
+                        {movieslist.Plot}</p>
+                      <p> 
+                        {movieslist.Actors}</p>
                       
                     </Link>
                     <DeleteBtn onClick={() => deleteMovie(movies._id)} />
