@@ -100,7 +100,7 @@ router.post("/tokenIsValid", async (req, res) => {
         if (!token) 
         return res.json(false);
 
-        const verified = jwt.verify(token, process.env.JWT_SECRET);
+        const verified = jwt.verify(token, process.env.jwtSecret);
         if (!verified) return res.json(false);
 
         const user = await User.findById(verified.id);
