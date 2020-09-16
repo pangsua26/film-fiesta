@@ -23,12 +23,12 @@ function Register() {
         try {
        
         await Axios.post(
-            "http://localhost:3001/users/register",
+            "/users/register",
             newUser
         );
 
         const loginRes = await Axios.post(
-            "http://localhost:3001/users/login", {
+            "/users/login", {
 
         email,
         password,
