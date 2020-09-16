@@ -11,7 +11,7 @@ try {
         .status(401)
         .json({ msg: "No authenitcation token, authorization denied"});
     
-    const verified = jwt.verify(token, process.env.JWT_SECRET);
+    const verified = jwt.verify(token, process.env.jwtSecret);
     if (!verified)
     return res
     .status(401)
