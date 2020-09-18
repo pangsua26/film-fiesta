@@ -10,9 +10,9 @@ As a busy and (most times) forgetful person, I want a tool that I can quickly se
 
 ## Features
 
-* Add movies to the list
-* Reminder tool for later times
-* Insert movies into MongoDB
+* Secure register and log in (JSON Web Token and Bcrypt)
+* Add movies to the list (saves in MongoDB Atlas)
+* Delete movies from the list
 
 ## Technologies Used
 
@@ -20,6 +20,11 @@ As a busy and (most times) forgetful person, I want a tool that I can quickly se
 * JSON Web Token
 * Bcrypt
 * React-Bootstrap
+
+## Screen Shots of Application
+<img width="1490" alt="Screen Shot 2020-09-17 at 7 24 31 PM" src="https://user-images.githubusercontent.com/61704824/93541398-f51d6900-f91b-11ea-9a70-b926df3d6536.png">
+<img width="1482" alt="Screen Shot 2020-09-17 at 7 23 57 PM" src="https://user-images.githubusercontent.com/61704824/93541476-2dbd4280-f91c-11ea-8d95-94bfcedf9155.png">
+<img width="1519" alt="Screen Shot 2020-09-17 at 7 25 19 PM" src="https://user-images.githubusercontent.com/61704824/93541520-50e7f200-f91c-11ea-9e03-f8768b9c548c.png">
 
 ## Link to Deployed Application
 
@@ -31,8 +36,8 @@ https://github.com/pangsua26/film-fiesta
 
 ## Contributors
 
-Jonathan 
-Pang
-Simeon
-Ahmed
-Jamal
+* Jonathan 
+* Pang
+* Simeon
+* Ahmed
+* Jamal
