@@ -2,7 +2,7 @@
 
 ## Description 
 
-Film Fiesta is an application that lets users securely log in and save movies to a list for future reference. As we are preoccupied with everyday things, life can sometimes be a bit too hectic. In that case, you can use Film Fiesta as a tool to keep your future viewing organized.  Simply add a movie or tv show to your watch list and input a synopsis if you would like and delete when you are finished! 
+Film Fiesta is an application that lets users securely log in by giving the user a unique web token and save movies to a list for future reference. As we are preoccupied with everyday things, life can sometimes be a bit too hectic. In that case, you can use Film Fiesta as a tool to keep your future viewing organized.  Simply add a movie or tv show to your watch list and input a synopsis if you would like and delete when you are finished! 
 
 ## User Story
 
@@ -16,6 +16,9 @@ As a busy and (most times) forgetful person, I want a tool that I can quickly se
 
 ## Technologies Used
 
+* Express
+* React
+* Nodejs
 * MongoDB Atlas
 * JSON Web Token
 * Bcrypt
