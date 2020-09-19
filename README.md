@@ -37,6 +37,15 @@ https://film-fiesta.herokuapp.com/login
 
 https://github.com/pangsua26/film-fiesta
 
+## Source
+
+* BCS MERN Activity as base code
+
+## Shout-outs!
+
+* Daniel Thao (TA)
+* Charlie Werness (Instructor)
+
 ## Contributors
 
 * Jonathan 
